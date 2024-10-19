@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="script" href="main.js">
+  
+  <title>Frontend Mentor | FAQ accordion</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+
+    @font-face {
+      font-family: WorkSans;
+      src: url(assets/fonts/WorkSans-VariableFont_wght.ttf);
+    }
+
+    body{
+      background-color: hsl(275, 100%, 97%);
+      background-image: url('assets/images/background-pattern-desktop.svg');
+      background-repeat: no-repeat;
+      background-size: 100%;
+      min-height: 100vh;
+      display: grid;
+      place-content: center;
+      font-family: WorkSans;
+
+    }
+   
+    .container{
+      background-color: hsl(0, 0%, 100%);
+      padding: 2rem;
+      margin: 1rem;
+      border-radius: 20px;
+      width: 560px;
+    }
+    .accordian{
+      background-color: white;
+      color: #444;
+      cursor: pointer;
+      padding: 1px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 15px;
+      transition: 0.4s;
+      font-family: WorkSans;
+    }
+  
+    .active, .accordian h3:hover {
+      color: #ad28eb;
+    }
+    .accordian:after {
+      background-image: url('assets/images/icon-plus.svg');
+      color: #777;
+      font-weight: bold;
+      float: right;
+      margin-left: 5px;
+    }
+    button{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      
+    }
+    .header{
+      display: flex;
+      gap: 1rem;
+      padding-bottom: 5px;
+    }
+    .header h1{
+      font-size: 50px;
+      margin:10px;
+      color: hsl(292, 42%, 14%);
+      
+    }
+    .accordian h3{
+      font-weight: 600;
+      font-size: 16px;
+      color: hsl(292, 42%, 14%);
+     
+    }
+    .panel{
+      border-bottom: 1px solid hsl(275, 100%, 97%);
+      font-size: 14px;
+      color: hsl(292, 16%, 49%);
+      line-height: 1.5;
+      font-weight: 400;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 200ms ease;
+      
+    }
+    .panel p{
+      margin: -10;
+    }
+    .panel:last-child{
+      border-bottom: none;
+    }
+    .accordian .icons img {
+      min-height: 30px;
+    }
+    .accordian .icons .minus-icon{
+      display: none;
+    }
+    
+    
+    
+    
+    
+
+    
+    
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="assets/images/icon-star.svg" alt="star">
+      <h1>FAQs</h1>
+    </div>
+      <button class="accordian"><h3>What is Frontend Mentor, and how will it help me?</h3>
+        <div class="icons">
+          <img class="plus-icon btn-icon" src="assets/images/icon-plus.svg">
+          <img class="minus-icon btn-icon" src="assets/images/icon-minus.svg">
+        </div>
+      </button>
+    <div class="panel"><p>Frontend Mentor offers realistic coding challenges to help developers improve their 
+      frontend coding skills with projects in HTML, CSS, and JavaScript. It's suitable for 
+      all levels and ideal for portfolio building.</p>
+    </div>
+  
+    <div class="faqs">
+
+    
+      <button class="accordian"><h3>Is Frontend Mentor free?</h3>
+        <div class="icons">
+          <img class="plus-icon btn-icon" src="assets/images/icon-plus.svg">
+          <img class="minus-icon btn-icon" src="assets/images/icon-minus.svg">
+        </div>
+      </button>
+    <div class="panel"><p>Yes, Frontend Mentor offers both free and premium coding challenges, with the free 
+      option providing access to a range of projects suitable for all skill levels.</p> 
+    </div>
+     <button class="accordian"><h3>Can I use Frontend Mentor projects in my portfolio?</h3>
+      <div class="icons">
+        <img class="plus-icon btn-icon" src="assets/images/icon-plus.svg">
+        <img class="minus-icon btn-icon" src="assets/images/icon-minus.svg">
+      </div>
+    </button>
+    <div class="panel"><p>Yes, you can use projects completed on Frontend Mentor in your portfolio. It's an excellent
+      way to showcase your skills to potential employers!</p>
+    </div>
+    <button class="accordian"><h3>  How can I get help if I'm stuck on a Frontend Mentor challenge?</h3>
+      <div class="icons">
+        <img class="plus-icon btn-icon" src="assets/images/icon-plus.svg">
+        <img class="minus-icon btn-icon" src="assets/images/icon-minus.svg">
+      </div>
+    </button>
+    <div class="panel"><p>The best place to get help is inside Frontend Mentor's Discord community. There's a help 
+      channel where you can ask questions and seek support from other community members.</p>
+    </div>
+    </div>
+  </div>
+
+  
+
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Shikha</a>.
+  </div>
+
+  <script>
+
+  const acc = document.querySelectorAll('.accordian')
+  var i;
+
+  for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var panel = this.nextElementSibling;
+      const plusIcon = this.querySelector('.plus-icon')
+      const minusIcon = this.querySelector('.minus-icon')
+
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+        plusIcon.style.display = 'block'
+        minusIcon.style.display = 'none'
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+        plusIcon.style.display = 'none'
+        minusIcon.style.display = 'block'
+      } 
+    });
+  }
+
+    </script> 
+</body>
+</html>
